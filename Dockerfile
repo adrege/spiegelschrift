@@ -16,6 +16,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 COPY --from=web-builder /build/dist /web/dist
-COPY --from=bin-builder /build/adrege-spiegelschrift /usr/bin/adrege-spiegelschrift
+COPY --from=bin-builder /build/spiegelschrift /usr/bin/spiegelschrift
 EXPOSE 1235
-CMD ["adrege-spiegelschrift"]
+CMD ["spiegelschrift"]
