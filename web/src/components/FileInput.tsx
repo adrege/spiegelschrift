@@ -22,18 +22,18 @@ export const FileInput = (props: {
   };
 
   return (
-    <div{...getRootProps()} className="w-100 h-100 d-flex flex-column gap-3">
-      <div 
-          className={`h-100 d-flex flex-column align-items-center text-center justify-content-center border border-3 border-secondary rounded-3 py-5 px-4 transition ${isDragActive ? "bg-light" : "bg-primary-subtle"}`}
-          style={{ cursor: "pointer"}}>
-        <input
-          {...getInputProps()}
-          onChange={handleInputChange}
-        />
-        <div className={`fs-1 ${isDragActive ? "text-primary" : "text-dark" }`}>
+    <div {...getRootProps()} className="w-100 h-100 d-flex flex-column gap-3">
+      <div
+        className={`h-100 d-flex flex-column align-items-center text-center justify-content-center border border-3 border-secondary rounded-3 py-5 px-4 transition ${isDragActive ? "bg-light" : "bg-primary-subtle"}`}
+        style={{ cursor: "pointer" }}
+      >
+        <input {...getInputProps()} onChange={handleInputChange} />
+        <div className={`fs-1 ${isDragActive ? "text-primary" : "text-dark"}`}>
           <i className="bi bi-cloud-arrow-up"></i>
         </div>
-        <div className={`fw-bold ${isDragActive ? "text-primary" : "text-dark" }`}>
+        <div
+          className={`fw-bold ${isDragActive ? "text-primary" : "text-dark"}`}
+        >
           {isDragActive
             ? "Laat hier je bestanden los..."
             : "Sleep bestanden hierheen of klik om te selecteren"}

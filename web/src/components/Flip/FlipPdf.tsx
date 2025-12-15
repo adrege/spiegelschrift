@@ -12,5 +12,5 @@ export const flipPdf = async (file: File): Promise<File> => {
 
   const flippedData = await document.save();
   const flippedName = `${file.name.split(".").slice(0, -1).join("")}-flipped.pdf`;
-  return new File([flippedData], flippedName, { type: file.type });
+  return new File([flippedData.slice()], flippedName, { type: file.type });
 };

@@ -1,9 +1,9 @@
 import "../styles/stylesheet.scss";
-import { createRoot } from "react-dom/client";
-import { TextFlip } from "./TextFlip";
-import { Flipper } from "./Flip/Flipper";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
+import { createRoot } from "react-dom/client";
+import { Flipper } from "./Flip/Flipper";
+import { TextFlip } from "./TextFlip";
 
 const App = () => {
   return (

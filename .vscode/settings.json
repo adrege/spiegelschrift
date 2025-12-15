@@ -1,0 +1,9 @@
+{
+	"editor.formatOnSave": true,
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"[go]": {
+		"editor.defaultFormatter": "golang.go"
+	}
+}

@@ -1,11 +1,9 @@
+import JSZip from "jszip";
 import { useState } from "react";
 import { DownloadFile } from "../DownloadFile";
 import { FileInput } from "../FileInput";
-import JSZip from "jszip";
-
+import { convertDocxToPdf } from "./DocxToPdf";
 import { flipPdf } from "./FlipPdf";
-import { flipTtf } from "./FlipTtf";
-import { convertDocxToPdf } from "./DocxToPdf"; 
 
 type FlippedResult = {
   originalName: string;
@@ -27,14 +25,8 @@ export const Flipper = () => {
               const flipped = await flipPdf(file);
               return { originalName: file.name, file: flipped };
             } else if (
-              file.type === "font/ttf" ||
-              ext.endsWith(".ttf") ||
-              file.type === "application/x-font-ttf"
-            ) {
-              const flipped = await flipTtf(file);
-              return { originalName: file.name, file: flipped };
-            } else if (
-              file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+              file.type ===
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
               ext.endsWith(".docx")
             ) {
               const pdf = await convertDocxToPdf(file);
@@ -45,7 +37,7 @@ export const Flipper = () => {
             console.error("Error processing file:", file.name, err);
           }
           return null;
-        })
+        }),
       );
       setResults((prev) => [
         ...prev,
@@ -73,23 +65,27 @@ export const Flipper = () => {
   };
 
   return (
-    <section className="bg-primary text-white p-3 rounded-end rounded-bottom d-flex flex-column gap-2"
-      style={{ height: "75vh" }}>
+    <section
+      className="bg-primary text-white p-3 rounded-end rounded-bottom d-flex flex-column gap-2"
+      style={{ height: "75vh" }}
+    >
       <h3>Spiegel bestanden</h3>
       <div className="w-100 d-flex gap-2 h-100">
         {/* File input */}
         <FileInput
-          acceptMime=".pdf,.ttf,.docx,application/pdf,font/ttf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          acceptMime=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           multiple
           onInput={handleFiles}
         />
         <div className="d-flex flex-column gap-2 w-100">
-          <div className="d-flex flex-column gap-2 p-2 border border-3 border-secondary rounded overflow-auto"
-            style={{ height: "80%" }}>
+          <div
+            className="d-flex flex-column gap-2 p-2 border border-3 border-secondary rounded overflow-auto"
+            style={{ height: "80%" }}
+          >
             {/* Downloads */}
             {results.map((result, idx) => (
               <div
-                key={result.file.name + idx}
+                key={result.file.name + idx.toString()}
                 className="d-flex align-items-center w-100 gap-2"
               >
                 <DownloadFile
@@ -106,11 +102,13 @@ export const Flipper = () => {
 
           <div className="w-100 d-flex gap-2 justify-content-end align-items-center">
             {/* Download all and Clear all */}
-            <span className="me-auto">{results.length} item{results.length === 1 ? "" : "s"}</span>
+            <span className="me-auto">
+              {results.length} item{results.length === 1 ? "" : "s"}
+            </span>
             <button
               className="btn btn-outline-light"
               type="button"
-              {...results.length === 0 ? { disabled: true } : {}}
+              {...(results.length === 0 ? { disabled: true } : {})}
               onClick={handleDownloadAll}
             >
               <i className="bi bi-download me-2"></i>Download alles
@@ -118,7 +116,7 @@ export const Flipper = () => {
             <button
               className="btn btn-outline-light"
               type="button"
-              {...results.length === 0 ? { disabled: true } : {}}
+              {...(results.length === 0 ? { disabled: true } : {})}
               onClick={() => setResults([])}
             >
               <i className="bi bi-x-circle me-2"></i>Verwijder alles
