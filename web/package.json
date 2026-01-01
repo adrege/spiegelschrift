@@ -18,7 +18,7 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.3",
     "react-dropzone": "^14.3.8",
-    "sass": "^1.96.0",
+    "sass": "^1.97.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"
   }
