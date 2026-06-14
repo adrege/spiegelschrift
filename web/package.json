@@ -20,6 +20,6 @@
     "react-dropzone": "^14.3.8",
     "sass": "^1.99.0",
     "typescript": "^6.0.2",
-    "vite": "^7.3.2"
+    "vite": "^8.0.16"
   }
 }
